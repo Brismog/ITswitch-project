@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Shopping Cart - ITswitch E-commerce{% endblock %}
+
+{% block content %}
+<h1>Shopping Cart</h1>
+
+{% if cart_items %}
+<div class="row">
+    <div class="col-md-8">
+        {% for item in cart_items %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ item.name }}</h5>
+                <p class="card-text">${{ "%.2f"|format(item.price) }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h4>Total: ${{ "%.2f"|format(total) }}</h4>
+                <form method="post" action="{{ url_for('checkout') }}">
+                    <button type="submit" class="btn btn-primary btn-lg">Checkout</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+<p>Your cart is empty.</p>
+<a href="{{ url_for('home') }}" class="btn btn-primary">Continue Shopping</a>
+{% endif %}
+{% endblock %}

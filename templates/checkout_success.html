@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Checkout Success - ITswitch E-commerce{% endblock %}
+
+{% block content %}
+<div class="alert alert-success">
+    <h4 class="alert-heading">Thank you for your purchase!</h4>
+    <p>Your order has been successfully processed.</p>
+</div>
+<a href="{{ url_for('home') }}" class="btn btn-primary">Continue Shopping</a>
+{% endblock %}
